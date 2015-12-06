@@ -21,6 +21,11 @@ app.get('/search',function(req,res) {
 	res.redirect('/restaurant_id/'+req.query.id);
 });
 
+// redirect /search?id=xxx&field=xxx to RESTful path /id/:id/
+app.get('/search',function(req,res) {
+	res.redirect('/restaurant_id/'+req.query.id+'/field/'+req.query.field);
+});
+
 // redirect /delete?id=xxx to RESTful path /id/:id/
 app.delete('/delete',function(req,res) {
 	res.redirect('/restaurant_id/'+req.query.id);
@@ -105,14 +110,15 @@ app.get('/restaurant_id/:id', function(req,res) {
     });
 });
 
-app.get('/restaurant_id/:id', function(req,res) {
+app.get('/restaurant_id/:id/:field', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
 	mongoose.connect(mongodbURL);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function (callback) {
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-		Restaurant.find({restaurant_id: req.params.id},function(err,results){
+		var fieldName = req.params.field;
+		Restaurant.find(({restaurant_id: req.params.id},{fieldName: 1}),function(err,results){
        		if (err) {
 				res.status(500).json(err);
 				throw err
