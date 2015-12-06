@@ -33,7 +33,7 @@ app.delete('/delete',function(req,res) {
 
 // modify /update?id=xxx&FIELD=xxx& to RESTful path /id/:id/
 app.put('/update',function(req,res) {
-	res.redirect('/restaurant_id/'+req.query.id+'/+req.query.field/'+req.query.value));
+	res.redirect('/restaurant_id/'+req.query.id+'/+req.query.field/'+req.query.value);
 });
 
 app.post('/',function(req,res) {
