@@ -21,8 +21,8 @@ app.delete('/delete',function(req,res) {
 	res.redirect('/id/'+req.query.id);
 });
 
-// modify /put?id=xxx to RESTful path /id/:id/
-app.delete('/put',function(req,res) {
+// modify /update?id=xxx to RESTful path /id/:id/
+app.put('/update',function(req,res) {
 	res.redirect('/id/'+req.query.id);
 });
 
