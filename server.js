@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-var mongodbURL = 'mongodb://haar.appcloud.net:27017/test';
+var mongodbURL = 'mongodb://haar.cloudapp.net:27017/test';
 var mongoose = require('mongoose');
 
 // redirect /search?id=xxx to RESTful path /id/:id/
