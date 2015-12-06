@@ -12,9 +12,9 @@ var mongodbURL = 'mongodb://haar.cloudapp.net:27017/test';
 var mongoose = require('mongoose');
 
 // redirect /create?.........
-app.post('/create',function(req,res)){
+app.post('/create',function(req,res) {
 	res.redirect('/name/'+req.query.name+'/building/'+req.query.building+'/street/'+req.query.street+'/zipcode/'+req.query.zipcode+'/lon/'+req.query.lon+'/lat/'+req.query.lat+'/borough/'+req.query.borough+'/cuisine/'+req.query.cuisine+'/restaurant_id/'+req.query.id);
-};
+});
 
 // redirect /search?id=xxx to RESTful path /id/:id/
 app.get('/search',function(req,res) {
