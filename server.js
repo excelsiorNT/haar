@@ -39,7 +39,7 @@ app.put('/update',function(req,res) {
 app.post('/',function(req,res) {
 	//console.log(req.body);
 	var restaurantSchema = require('./models/restaurant');
-	mongoose.connect('mongodb://haar.appcloud.net:27017/test');
+	mongoose.connect(mongodbURL);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function (callback) {
@@ -66,7 +66,7 @@ app.post('/',function(req,res) {
 			}
        		//console.log('Restaurant created!')
        		db.close();
-			res.status(200).json({message: 'insert done', id: r._id});
+			res.status(200).json({message: 'Insert done', id: r._id});
     	});
     });
 });
