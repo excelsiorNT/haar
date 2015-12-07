@@ -141,14 +141,14 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
 });
 
 */
-  app.get('/restaurant_id/:id/:aggregrate/:field/:criteria', function(req,res) {
+  app.get('/restaurant_id/:id/:aggregate/:field/:criteria', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
 	mongoose.connect(mongodbURL);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function (callback) {
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-		var aggregrate = req.params.aggregrate;
+		var aggregate = req.params.aggregate;
 		var field = req.params.field;
 		var criteria = req.params.criteria;
 		if(field==criteria){
