@@ -151,7 +151,7 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
 		var aggregate = req.params.aggregate;
 		var field = req.params.field;
 		var criteria = req.params.criteria;
-		if(field==criteria){
+		if(field=="criteria"){
 		Restaurant.aggregrate([{$group:{restaurant_id: req.params.id,avgScore:{ $avg: "grades"."score"}}}]);
 		var criteria = {restaurant_id: req.params.id, avgScore: {$gt: 70}};
 		Restaurant.find(({restaurant_id: req.params.id}),function(err,results){
