@@ -122,7 +122,7 @@ app.get('/restaurant_id/:id/TestCase3', function(req,res) {
 	db.once('open', function (callback) {
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
 		Restaurant.aggregrate([{$group:{restaurant_id: req.params.id,avgScore:{ $avg: "grades"."score"}}}]);
-		var criteria = {restaurant_id: req.params.id, avgScore: {$gt: 70}};;
+		var criteria = {restaurant_id: req.params.id, avgScore: {$gt: 70}};
 		Restaurant.find({criteria},function(err,results){
        		if (err) {
 				res.status(500).json(err);
