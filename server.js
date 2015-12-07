@@ -140,7 +140,7 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
     });
 });
 
-*/
+
   app.get('/restaurant_id/:id/:criteria', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
 	mongoose.connect(mongodbURL);
@@ -168,7 +168,7 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
 		db.close();
     });
 });
-
+*/
 
 app.put('/restaurant_id/:restaurant_id/grade', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
