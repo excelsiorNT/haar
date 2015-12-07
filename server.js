@@ -45,14 +45,26 @@ app.post('/',function(req,res) {
 	db.once('open', function (callback) {
 		var rObj = {};
 		rObj.address = {};
-		rObj.address.building = req.body.building;
-		rObj.address.street = req.body.street;
-		rObj.address.zipcode = req.body.zipcode;
-		rObj.address.coord = [];
-		rObj.address.coord.push(req.body.lon);
-		rObj.address.coord.push(req.body.lat);
-		rObj.borough = req.body.borough;
-		rObj.cuisine = req.body.cuisine;
+		if (req.body.building){
+			rObj.address.building = req.body.building;
+		}
+		if (req.body.street){
+			rObj.address.street = req.body.street;
+		}
+		if (req.body.zipcode){
+			rObj.address.zipcode = req.body.zipcode;
+		}
+		if (req.body.lon){
+			rObj.address.coord = [];
+			rObj.address.coord.push(req.body.lon);
+			rObj.address.coord.push(req.body.lat);
+		}
+		if (req.body.borough){
+			rObj.borough = req.body.borough;
+		}
+		if (req.body.cuisine){
+			rObj.cuisine = req.body.cuisine;
+		}
 		rObj.name = req.body.name;
 		rObj.restaurant_id = req.body.restaurant_id;
 
