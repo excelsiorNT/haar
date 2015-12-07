@@ -75,11 +75,11 @@ app.post('/',function(req,res) {
 				if (err2){
 					res.status(500).json(err2);
 					throw err2;
-					db.close();
-					res.status(200).json({message: 'insert done', id: r._id});
-				}
 					
-				}
+					}
+				db.close();
+				res.status(200).json({message: 'insert done', id: r._id});	
+				});
 				}
 			}
        		db.close();
