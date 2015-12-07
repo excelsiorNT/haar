@@ -52,8 +52,6 @@ app.post('/',function(req,res) {
 			rObj.address.coord = [];
 			rObj.address.coord.push(req.body.lon);
 			rObj.address.coord.push(req.body.lat);
-		}
-		if (req.body.borough) {
 			rObj.borough = req.body.borough;
 			rObj.cuisine = req.body.cuisine;
 		}
@@ -62,32 +60,15 @@ app.post('/',function(req,res) {
 
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
 		var r = new Restaurant(rObj);
+		//console.log(r);
 		r.save(function(err) {
        		if (err) {
-				var restaurantSchema = require('./models/restaurant');
-				mongoose.connect(mongodbURL);
-				var db = mongoose.connection;
-				db.on('error', console.error.bind(console, 'connection error:'));
-				db.once('open', function (callback) {
-				var rObj = {};
-				rObj.name = req.body.name;
-				rObj.restaurant_id = req.body.restaurant_id;
-		
-				var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-				var r = new Restaurant(rObj);
-				r.save(function(err2){
-				if (err2){
-					res.status(500).json(err2);
-					throw err2;
-					
-					}
-				db.close();
-				res.status(200).json({message: 'insert done', id: r._id});	
-				});
-				}
+				res.status(500).json(err);
+				throw err
 			}
+       		//console.log('Restaurant created!')
        		db.close();
-			res.status(200).json({message: 'insert done', id: r._id});
+			res.status(200).json({message: 'Insert done', id: r._id});
     	});
     });
 });
