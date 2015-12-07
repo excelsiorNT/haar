@@ -141,34 +141,33 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
 });
 
 */
-  app.get('/restaurant_id/:id/:field', function(req,res) {
+  app.get('/restaurant_id/:id/:aggregrate/:field/:criteria', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
 	mongoose.connect(mongodbURL);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
 	db.once('open', function (callback) {
 		var Restaurant = mongoose.model('Restaurant', restaurantSchema);
-		var fieldName = req.params.field;
-		/*
+		var aggregrate = req.params.aggregrate;
+		var field = req.params.field;
+		var criteria = req.params.criteria;
+		if(field==criteria){
 		Restaurant.aggregrate([{$group:{restaurant_id: req.params.id,avgScore:{ $avg: "grades"."score"}}}]);
 		var criteria = {restaurant_id: req.params.id, avgScore: {$gt: 70}};
-		*/
+		Restaurant.find(({restaurant_id: req.params.id}),function(err,results){
+       		if (err) {res.status(500).json(err);
+       		throw err}
+		if (results.length > 0) {
+		res.status(200).json(results);
+		}
+		else {
+		res.status(200).json({message: 'No matching document', restaurant_id: req.params.id});
+		}
+		db.close();
+		}
+		}
 		res.status(200).json({message: 'No matching document', restaurant_id: req.params.id});
 		db.close();
-		/*
-		Restaurant.find(({restaurant_id: req.params.id}),function(err,results){
-       		if (err) {
-				res.status(500).json(err);
-				throw err
-			}
-			if (results.length > 0) {
-				res.status(200).json(results);
-			}
-			else {
-				res.status(200).json({message: 'No matching document', restaurant_id: req.params.id});
-			}
-			db.close();
-    	}); */
     });
 });
 
