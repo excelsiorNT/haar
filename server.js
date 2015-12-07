@@ -139,7 +139,7 @@ app.get('/restaurant_id/:id/TestCase/3', function(req,res) {
     });
 });
 
-app.get('/restaurant_id/:id/:field', function(req,res) {
+ /* app.get('/restaurant_id/:id/:field', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
 	mongoose.connect(mongodbURL);
 	var db = mongoose.connection;
@@ -162,6 +162,7 @@ app.get('/restaurant_id/:id/:field', function(req,res) {
     	});
     });
 });
+*/
 
 app.put('/restaurant_id/:restaurant_id/grade', function(req,res) {
 	var restaurantSchema = require('./models/restaurant');
