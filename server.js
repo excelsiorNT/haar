@@ -71,10 +71,12 @@ app.post('/',function(req,res) {
 		
 				var Restaurant = mongoose.model('Restaurant', restaurantSchema);
 				var r = new Restaurant(rObj);
-				r.save(function(err2)){
+				r.save(function(err2){
 				if (err2){
 					res.status(500).json(err2);
 					throw err2;
+					db.close();
+					res.status(200).json({message: 'insert done', id: r._id});
 				}
 					
 				}
